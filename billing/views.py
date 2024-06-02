@@ -38,7 +38,7 @@ def input_previous_usage(request):
             return redirect('billing:calculate_bill')
     else:
         form = UsageForm()
-    return render(request, 'billing:input_previous_usage.html', {'form': form})
+    return render(request, 'billing/input_previous_usage.html', {'form': form})
 
 
 @login_required
