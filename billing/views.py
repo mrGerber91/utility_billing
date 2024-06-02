@@ -24,7 +24,7 @@ def setup_rates(request):
             return redirect('billing:input_previous_usage')
     else:
         form = RatesForm()
-    return render(request, 'billing:setup_rates.html', {'form': form})
+    return render(request, 'billing/setup_rates.html', {'form': form})
 
 @login_required
 def input_previous_usage(request):
