@@ -24,8 +24,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'billing.apps.BillingConfig',
     'rest_framework',
-    'captcha',
-    'axes',
+    'captcha',
     'compressor',
     'sslserver',
     'corsheaders',
@@ -38,8 +37,7 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'axes.middleware.AxesMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'csp.middleware.CSPMiddleware',
     'corsheaders.middleware.CorsMiddleware',
 ]
@@ -135,8 +133,8 @@ LOGGING = {
     },
 }
 
-AXES_FAILURE_LIMIT = 500
-AXES_COOLOFF_TIME = 1
+AXES_FAILURE_LIMIT = 50000
+AXES_COOLOFF_TIME = 0.001
 AXES_LOCKOUT_TEMPLATE = 'lockout.html'
 
 SECURE_SSL_REDIRECT = False
@@ -158,8 +156,7 @@ COMPRESS_ENABLED = True
 COMPRESS_CSS_FILTERS = ['compressor.filters.css_default.CssAbsoluteFilter', 'compressor.filters.cssmin.CSSMinFilter']
 COMPRESS_JS_FILTERS = ['compressor.filters.jsmin.JSMinFilter']
 
-AUTHENTICATION_BACKENDS = [
-    'axes.backends.AxesBackend',
-    'django.contrib.auth.backends.ModelBackend',
+AUTHENTICATION_BACKENDS = [
+'django.contrib.auth.backends.ModelBackend'
 ]
 
