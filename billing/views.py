@@ -21,7 +21,7 @@ def setup_rates(request):
             rates = form.save(commit=False)
             rates.user = request.user
             rates.save()
-            return redirect('input_previous_usage')
+            return redirect('billing/input_previous_usage')
     else:
         form = RatesForm()
     return render(request, 'billing/setup_rates.html', {'form': form})
@@ -35,7 +35,7 @@ def input_previous_usage(request):
             usage.user = request.user
             usage.sewage = usage.hot_water + usage.cold_water  # Рассчитываем поле sewage
             usage.save()  # Сохраняем объект Usage
-            return redirect('calculate_bill')
+            return redirect('billing/calculate_bill')
     else:
         form = UsageForm()
     return render(request, 'billing/input_previous_usage.html', {'form': form})
