@@ -11,3 +11,34 @@
 2024-06-02 11:07:24,428 - INFO - AXES: Cleaned up 0 expired access attempts from database that were older than 2024-06-02 07:07:24.428097+00:00
 2024-06-02 11:07:24,428 - INFO - AXES: Successful logout by {username: "********************", ip_address: "********************", user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0", path_info: "/billing/logout/"}.
 2024-06-02 11:12:31,004 - INFO - AXES: BEGIN version 6.4.0, blocking by ip_address
+2024-06-02 11:30:01,989 - INFO - AXES: BEGIN version 6.4.0, blocking by ip_address
+2024-06-02 11:30:02,346 - INFO - AXES: BEGIN version 6.4.0, blocking by ip_address
+2024-06-02 11:30:02,467 - INFO - Watching for file changes with StatReloader
+2024-06-02 11:30:04,194 - WARNING - Not Found: /favicon.ico
+2024-06-02 11:31:13,201 - DEBUG - Using request.META.get('REMOTE_ADDR', None) fallback method to get client IP address
+2024-06-02 11:31:13,202 - DEBUG - Using parameter credentials to get username with key settings.AXES_USERNAME_FORM_FIELD
+2024-06-02 11:31:13,203 - DEBUG - AXES: Getting access attempts that are newer than 2024-06-02 07:31:13.201194+00:00
+2024-06-02 11:31:13,425 - INFO - AXES: Cleaned up 0 expired access attempts from database that were older than 2024-06-02 07:31:13.201194+00:00
+2024-06-02 11:31:13,425 - INFO - AXES: Successful login by {username: "********************", ip_address: "********************", user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0", path_info: "/accounts/login/"}.
+2024-06-02 11:31:13,496 - WARNING - Not Found: /accounts/profile/
+2024-06-02 11:40:09,275 - INFO - C:\Users\Sasha_Jullia_Misha\django_v2\utility_billing\billing\urls.py changed, reloading.
+2024-06-02 11:40:09,561 - INFO - AXES: BEGIN version 6.4.0, blocking by ip_address
+2024-06-02 11:40:09,689 - INFO - Watching for file changes with StatReloader
+2024-06-02 11:40:16,030 - INFO - C:\Users\Sasha_Jullia_Misha\django_v2\utility_billing\billing\urls.py changed, reloading.
+2024-06-02 11:40:16,299 - INFO - AXES: BEGIN version 6.4.0, blocking by ip_address
+2024-06-02 11:40:16,421 - INFO - Watching for file changes with StatReloader
+2024-06-02 11:40:23,748 - INFO - C:\Users\Sasha_Jullia_Misha\django_v2\utility_billing\billing\views.py changed, reloading.
+2024-06-02 11:40:24,033 - INFO - AXES: BEGIN version 6.4.0, blocking by ip_address
+2024-06-02 11:40:24,159 - INFO - Watching for file changes with StatReloader
+2024-06-02 11:40:35,638 - INFO - C:\Users\Sasha_Jullia_Misha\django_v2\utility_billing\billing\views.py changed, reloading.
+2024-06-02 11:40:35,904 - INFO - AXES: BEGIN version 6.4.0, blocking by ip_address
+2024-06-02 11:40:36,028 - INFO - Watching for file changes with StatReloader
+2024-06-02 11:40:42,334 - INFO - C:\Users\Sasha_Jullia_Misha\django_v2\utility_billing\billing\views.py changed, reloading.
+2024-06-02 11:40:42,600 - INFO - AXES: BEGIN version 6.4.0, blocking by ip_address
+2024-06-02 11:40:42,721 - INFO - Watching for file changes with StatReloader
+2024-06-02 11:43:04,826 - INFO - C:\Users\Sasha_Jullia_Misha\django_v2\utility_billing\billing\views.py changed, reloading.
+2024-06-02 11:43:05,115 - INFO - AXES: BEGIN version 6.4.0, blocking by ip_address
+2024-06-02 11:43:05,246 - INFO - Watching for file changes with StatReloader
+2024-06-02 11:47:13,018 - INFO - C:\Users\Sasha_Jullia_Misha\django_v2\utility_billing\utility_billing\settings.py changed, reloading.
+2024-06-02 11:47:13,285 - INFO - AXES: BEGIN version 6.4.0, blocking by ip_address
+2024-06-02 11:47:13,409 - INFO - Watching for file changes with StatReloader

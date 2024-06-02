@@ -8,6 +8,8 @@ from .forms import UserRegistrationForm
 import logging
 from django.core.exceptions import ValidationError
 from django.contrib import messages
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
 
 logger = logging.getLogger(__name__)
 
@@ -107,3 +109,28 @@ def home(request):
         return redirect('billing:setup_rates')  # Убедитесь, что перенаправление идет на существующий маршрут
     else:
         return redirect('billing:register')  # Убедитесь, что перенаправление идет на существующий маршрут
+
+
+@login_required
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # Важно для поддержания сессии пользователя после смены пароля
+            messages.success(request, 'Your password was successfully updated!')
+            return redirect('billing:profile')
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'billing/change_password.html', {'form': form})
+
+@login_required
+def update_profile(request):
+    # Пример обновления профиля, зависит от того, как вы хотите обрабатывать данные
+    return render(request, 'billing/update_profile.html')
+
+@login_required
+def profile(request):
+    return render(request, 'billing/profile.html')
