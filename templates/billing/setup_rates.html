@@ -1,0 +1,48 @@
+{% extends "billing/base.html" %}
+
+{% block title %}Setup Rates{% endblock %}
+
+{% block content %}
+    <h2 class="title">Setup Rates</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="field">
+            <label class="label">Hot Water Rate</label>
+            <div class="control">
+                {{ form.hot_water }}
+                <p class="help">Enter the cost per unit of hot water.</p>
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Cold Water Rate</label>
+            <div class="control">
+                {{ form.cold_water }}
+                <p class="help">Enter the cost per unit of cold water.</p>
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Electricity Rate</label>
+            <div class="control">
+                {{ form.electricity }}
+                <p class="help">Enter the cost per unit of electricity.</p>
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Sewage Rate (optional)</label>
+            <div class="control">
+                {{ form.sewage }}
+                <p class="help">Enter the cost per unit of sewage, if applicable.</p>
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Currency</label>
+            <div class="control">
+                {{ form.currency }}
+                <p class="help">Select the currency for the rates.</p>
+            </div>
+        </div>
+        <div class="control">
+            <button type="submit" class="button is-primary">Save Rates</button>
+        </div>
+    </form>
+{% endblock %}

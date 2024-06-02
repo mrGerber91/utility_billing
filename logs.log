@@ -1,0 +1,13 @@
+2024-06-02 11:07:14,677 - INFO - C:\Users\Sasha_Jullia_Misha\django_v2\utility_billing\billing\views.py changed, reloading.
+2024-06-02 11:07:14,953 - INFO - AXES: BEGIN version 6.4.0, blocking by ip_address
+2024-06-02 11:07:15,075 - INFO - Watching for file changes with StatReloader
+2024-06-02 11:07:18,240 - WARNING - Not Found: /billing/logout/billing/login
+2024-06-02 11:07:23,186 - DEBUG - Using request.META.get('REMOTE_ADDR', None) fallback method to get client IP address
+2024-06-02 11:07:23,187 - DEBUG - Using parameter credentials to get username with key settings.AXES_USERNAME_FORM_FIELD
+2024-06-02 11:07:23,187 - DEBUG - AXES: Getting access attempts that are newer than 2024-06-02 07:07:23.186052+00:00
+2024-06-02 11:07:23,317 - INFO - AXES: Cleaned up 0 expired access attempts from database that were older than 2024-06-02 07:07:23.186052+00:00
+2024-06-02 11:07:23,317 - INFO - AXES: Successful login by {username: "********************", ip_address: "********************", user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0", path_info: "/accounts/login/"}.
+2024-06-02 11:07:24,428 - DEBUG - Using request.META.get('REMOTE_ADDR', None) fallback method to get client IP address
+2024-06-02 11:07:24,428 - INFO - AXES: Cleaned up 0 expired access attempts from database that were older than 2024-06-02 07:07:24.428097+00:00
+2024-06-02 11:07:24,428 - INFO - AXES: Successful logout by {username: "********************", ip_address: "********************", user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0", path_info: "/billing/logout/"}.
+2024-06-02 11:12:31,004 - INFO - AXES: BEGIN version 6.4.0, blocking by ip_address
