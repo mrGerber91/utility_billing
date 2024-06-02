@@ -11,7 +11,10 @@ SECRET_KEY = 'django-insecure-%z)og3_ohsi)25y)fj=m!+!=04!xfu3#uizmvut81y_o#=u131
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
+CORS_ORIGIN_WHITELIST = [
+    'https://mrgerber91-utility-billing-690d.twc1.net',
+]
+CORS_ORIGIN_ALLOW_ALL = False
 # Application definition
 
 INSTALLED_APPS = [
@@ -27,6 +30,7 @@ INSTALLED_APPS = [
     'axes',
     'compressor',
     'sslserver',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -39,6 +43,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'axes.middleware.AxesMiddleware',
     'csp.middleware.CSPMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 CSP_DEFAULT_SRC = ("'self'", 'https://mrgerber91-utility-billing-690d.twc1.net')
