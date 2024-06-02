@@ -198,3 +198,15 @@ django.template.exceptions.TemplateDoesNotExist: billing/../templates/accounts/p
 2024-06-02 12:15:33,321 - DEBUG - AXES: Getting access attempts that are newer than 2024-06-02 08:15:33.320817+00:00
 2024-06-02 12:15:33,488 - INFO - AXES: Cleaned up 0 expired access attempts from database that were older than 2024-06-02 08:15:33.320817+00:00
 2024-06-02 12:15:33,488 - INFO - AXES: Successful login by {username: "********************", ip_address: "********************", user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0", path_info: "/accounts/login/"}.
+2024-06-02 12:20:30,049 - INFO - AXES: BEGIN version 6.4.0, blocking by ip_address
+2024-06-02 12:32:33,539 - INFO - AXES: BEGIN version 6.4.0, blocking by ip_address
+2024-06-02 12:32:33,899 - INFO - AXES: BEGIN version 6.4.0, blocking by ip_address
+2024-06-02 12:32:34,026 - INFO - Watching for file changes with StatReloader
+2024-06-02 12:32:37,319 - DEBUG - Using request.META.get('REMOTE_ADDR', None) fallback method to get client IP address
+2024-06-02 12:32:37,321 - INFO - AXES: Cleaned up 0 expired access attempts from database that were older than 2024-06-02 08:32:37.319848+00:00
+2024-06-02 12:32:37,321 - INFO - AXES: Successful logout by {username: "********************", ip_address: "********************", user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0", path_info: "/billing/logout/"}.
+2024-06-02 12:32:38,386 - DEBUG - Using request.META.get('REMOTE_ADDR', None) fallback method to get client IP address
+2024-06-02 12:32:38,386 - DEBUG - Using parameter credentials to get username with key settings.AXES_USERNAME_FORM_FIELD
+2024-06-02 12:32:38,386 - DEBUG - AXES: Getting access attempts that are newer than 2024-06-02 08:32:38.386015+00:00
+2024-06-02 12:32:38,514 - INFO - AXES: Cleaned up 0 expired access attempts from database that were older than 2024-06-02 08:32:38.386015+00:00
+2024-06-02 12:32:38,514 - INFO - AXES: Successful login by {username: "********************", ip_address: "********************", user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0", path_info: "/accounts/login/"}.
