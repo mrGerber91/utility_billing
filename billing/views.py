@@ -83,7 +83,7 @@ def register(request):
                 return redirect('billing:profile')
         else:
             form = UserRegistrationForm()
-        return render(request, 'billing:register.html', {'form': form})
+        return render(request, 'billing/register.html', {'form': form})
 
 
 def user_login(request):
