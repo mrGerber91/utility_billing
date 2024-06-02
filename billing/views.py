@@ -41,6 +41,7 @@ def input_previous_usage(request):
     return render(request, 'billing/input_previous_usage.html', {'form': form})
 
 
+
 @login_required
 def calculate_bill(request):
     if request.method == 'POST':
@@ -55,10 +56,10 @@ def calculate_bill(request):
             cold_water_bill = (current_usage.cold_water - previous_usage.cold_water) * rates.cold_water
             electricity_bill = (current_usage.electricity - previous_usage.electricity) * rates.electricity
 
-            if current_usage.auto_calculate_sewage:  # Проверяем флаг автоматического рассчета водоотвода
+            if current_usage.auto_calculate_sewage:
                 sewage = current_usage.hot_water + current_usage.cold_water
             else:
-                sewage = current_usage.sewage  # Используем значение, если автоматический расчет отключен
+                sewage = current_usage.sewage
 
             sewage_bill = (sewage - previous_usage.sewage) * rates.sewage if previous_usage.sewage is not None and sewage is not None else 0
 
@@ -66,9 +67,10 @@ def calculate_bill(request):
 
             context = {'bill': bill, 'currency': rates.currency}
             current_usage.save()
-            return render(request, 'billing:show_bill.html', context)
-    else:
-        current_usage_form = UsageForm()
+            return render(request, 'billing/show_bill.html', context)
+            
+    # Если действие не POST, показываем форму для ввода данных
+    current_usage_form = UsageForm()
     return render(request, 'billing/calculate_bill.html', {'form': current_usage_form})
 
 
