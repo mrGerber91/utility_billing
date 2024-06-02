@@ -12,7 +12,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -43,11 +42,10 @@ MIDDLEWARE = [
 ]
 
 CSP_DEFAULT_SRC = ("'self'", 'https://mrgerber91-utility-billing-690d.twc1.net')
-CSP_STYLE_SRC = ("'self'", 'https://fonts.googleapis.com', 'https://cdnjs.cloudflare.com', "'sha256-bviLPwiqrYk7TOtr5i2eb7I5exfGcGEvVuxmITyg//c='")
+CSP_STYLE_SRC = ("'self'", 'https://fonts.googleapis.com', 'https://cdnjs.cloudflare.com',
+                 "'sha256-bviLPwiqrYk7TOtr5i2eb7I5exfGcGEvVuxmITyg//c='")
 CSP_FONT_SRC = ("'self'", 'https://fonts.gstatic.com')
 CSP_SCRIPT_SRC = ("'self'", 'https://use.fontawesome.com', "'sha256-8kn/LzAuvHlDMDRTOv/fN8IxCVALd2/WLm6pIgtWXyE='")
-
-
 
 ROOT_URLCONF = 'utility_billing.urls'
 
@@ -69,7 +67,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'utility_billing.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
@@ -79,7 +76,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -99,7 +95,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -109,7 +104,6 @@ USE_I18N = True
 USE_TZ = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 
 LOGGING = {
     'version': 1,
@@ -165,3 +159,4 @@ AUTHENTICATION_BACKENDS = [
     'axes.backends.AxesBackend',
     'django.contrib.auth.backends.ModelBackend',
 ]
+
