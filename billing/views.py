@@ -74,13 +74,13 @@ def calculate_bill(request):
 
 def register(request):
     if request.user.is_authenticated:
-        return redirect('home')
+        return redirect('billing:profile')
     else:
         if request.method == 'POST':
             form = UserRegistrationForm(request.POST)
             if form.is_valid():
                 user = form.save()
-                return redirect('home')
+                return redirect('billing:profile')
         else:
             form = UserRegistrationForm()
         return render(request, 'billing/register.html', {'form': form})
