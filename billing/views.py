@@ -21,10 +21,10 @@ def setup_rates(request):
             rates = form.save(commit=False)
             rates.user = request.user
             rates.save()
-            return redirect('billing/input_previous_usage')
+            return redirect('billing:input_previous_usage')
     else:
         form = RatesForm()
-    return render(request, 'billing/setup_rates.html', {'form': form})
+    return render(request, 'billing:setup_rates.html', {'form': form})
 
 @login_required
 def input_previous_usage(request):
@@ -35,10 +35,10 @@ def input_previous_usage(request):
             usage.user = request.user
             usage.sewage = usage.hot_water + usage.cold_water  # Рассчитываем поле sewage
             usage.save()  # Сохраняем объект Usage
-            return redirect('billing/calculate_bill')
+            return redirect('billing:calculate_bill')
     else:
         form = UsageForm()
-    return render(request, 'billing/input_previous_usage.html', {'form': form})
+    return render(request, 'billing:input_previous_usage.html', {'form': form})
 
 
 @login_required
@@ -66,7 +66,7 @@ def calculate_bill(request):
 
             context = {'bill': bill, 'currency': rates.currency}
             current_usage.save()
-            return render(request, 'billing/show_bill.html', context)
+            return render(request, 'billing:show_bill.html', context)
     else:
         current_usage_form = UsageForm()
     return render(request, 'billing/calculate_bill.html', {'form': current_usage_form})
@@ -83,7 +83,7 @@ def register(request):
                 return redirect('billing:profile')
         else:
             form = UserRegistrationForm()
-        return render(request, 'billing/register.html', {'form': form})
+        return render(request, 'billing:register.html', {'form': form})
 
 
 def user_login(request):
@@ -94,7 +94,7 @@ def user_login(request):
 
         if user:
             login(request, user)
-            return redirect('billing/setup_rates')
+            return redirect('billing:setup_rates')
         else:
             messages.error(request, "Invalid username or password.")
     return render(request, 'billing/login.html')
