@@ -142,9 +142,9 @@ AXES_FAILURE_LIMIT = 500
 AXES_COOLOFF_TIME = 1
 AXES_LOCKOUT_TEMPLATE = 'lockout.html'
 
-SECURE_SSL_REDIRECT = True  # Принудительный редирект на HTTPS
-SESSION_COOKIE_SECURE = True  # Отправка куки только через HTTPS
-CSRF_COOKIE_SECURE = True  # Отправка CSRF куки только через HTTPS
+SECURE_SSL_REDIRECT = False
+SESSION_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = False
 
 CACHES = {
     'default': {

@@ -42,3 +42,12 @@
 2024-06-02 11:47:13,018 - INFO - C:\Users\Sasha_Jullia_Misha\django_v2\utility_billing\utility_billing\settings.py changed, reloading.
 2024-06-02 11:47:13,285 - INFO - AXES: BEGIN version 6.4.0, blocking by ip_address
 2024-06-02 11:47:13,409 - INFO - Watching for file changes with StatReloader
+2024-06-02 11:54:25,938 - INFO - AXES: BEGIN version 6.4.0, blocking by ip_address
+2024-06-02 11:54:26,293 - INFO - AXES: BEGIN version 6.4.0, blocking by ip_address
+2024-06-02 11:54:26,414 - INFO - Watching for file changes with StatReloader
+2024-06-02 11:54:34,996 - WARNING - Not Found: /accounts/profile/
+2024-06-02 11:54:40,563 - WARNING - Not Found: /accounts/profile/
+2024-06-02 11:54:56,223 - INFO - AXES: BEGIN version 6.4.0, blocking by ip_address
+2024-06-02 11:54:56,587 - INFO - AXES: BEGIN version 6.4.0, blocking by ip_address
+2024-06-02 11:54:56,707 - INFO - Watching for file changes with StatReloader
+2024-06-02 11:54:58,287 - WARNING - Not Found: /favicon.ico
