@@ -49,18 +49,41 @@ def input_previous_usage(request):
 @login_required
 def calculate_bill(request):
     previous_usage = Usage.objects.filter(user=request.user).order_by('-month').first()
+    rates = Rates.objects.filter(user=request.user).first()  # Получаем тарифы пользователя
+
     if request.method == 'POST':
         form = UsageForm(request.POST, instance=previous_usage if previous_usage else None)
         if form.is_valid():
             current_usage = form.save(commit=False)
             current_usage.user = request.user
+
+            # Расчет стоимости услуг на основе текущего и предыдущего показаний
+            hot_water_bill = (current_usage.hot_water - (previous_usage.hot_water if previous_usage else 0)) * (rates.hot_water if rates else 0)
+            cold_water_bill = (current_usage.cold_water - (previous_usage.cold_water if previous_usage else 0)) * (rates.cold_water if rates else 0)
+            electricity_bill = (current_usage.electricity - (previous_usage.electricity if previous_usage else 0)) * (rates.electricity if rates else 0)
+            
+            if current_usage.auto_calculate_sewage:
+                sewage = current_usage.hot_water + current_usage.cold_water
+            else:
+                sewage = current_usage.sewage
+
+            sewage_bill = (sewage - (previous_usage.sewage if previous_usage else 0)) * (rates.sewage if rates else 0)
+            
+            bill = hot_water_bill + cold_water_bill + electricity_bill + sewage_bill
+
             current_usage.save()
-            return render(request, 'billing/show_bill.html', context)
+            context = {
+                'bill': bill,
+                'currency': rates.currency if rates else 'N/A',
+                'form': form
+            }
+        else:
+            context = {'form': form}
     else:
         form = UsageForm(instance=previous_usage if previous_usage else None)
+        context = {'form': form}
 
-    return render(request, 'billing/calculate_bill.html', {'form': form})
-
+    return render(request, 'billing/calculate_bill.html', context)
 def register(request):
     if request.user.is_authenticated:
         return redirect('billing:profile')
