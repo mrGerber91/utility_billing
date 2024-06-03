@@ -10,10 +10,10 @@ SECRET_KEY = 'django-insecure-%z)og3_ohsi)25y)fj=m!+!=04!xfu3#uizmvut81y_o#=u131
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
-CORS_ORIGIN_WHITELIST = ['*']
-CSRF_TRUSTED_ORIGINS = ['*']
-CORS_ALLOWED_ORIGINS = ['*']
+ALLOWED_HOSTS = ['*', 'mrgerber91-utility-billing-690d.twc1.net']
+CORS_ORIGIN_WHITELIST = ['*','mrgerber91-utility-billing-690d.twc1.net']
+CSRF_TRUSTED_ORIGINS = ['*','mrgerber91-utility-billing-690d.twc1.net']
+CORS_ALLOWED_ORIGINS = ['*', 'mrgerber91-utility-billing-690d.twc1.net']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
