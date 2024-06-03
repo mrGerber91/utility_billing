@@ -45,10 +45,32 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
 ]
 
-CSP_DEFAULT_SRC = ("'self'", 'https://mrgerber91-utility-billing-690d.twc1.net', 'https://s3.timeweb.cloud')
-CSP_STYLE_SRC = ("'self'", 'https://fonts.googleapis.com', 'https://cdnjs.cloudflare.com',                 "'sha256-bviLPwiqrYk7TOtr5i2eb7I5exfGcGEvVuxmITyg//c='", 'https://s3.timeweb.cloud')
-CSP_FONT_SRC = ("'self'", 'https://fonts.gstatic.com', 'https://s3.timeweb.cloud')
-CSP_SCRIPT_SRC = ("'self'", "'unsafe-inline'", "https://use.fontawesome.com", 'https://s3.timeweb.cloud')
+CSP_DEFAULT_SRC = (
+    "'self'",
+    'https://mrgerber91-utility-billing-690d.twc1.net',
+    'https://s3.timeweb.cloud'
+)
+
+CSP_STYLE_SRC = (
+    "'self'",
+    'https://fonts.googleapis.com',
+    'https://cdnjs.cloudflare.com',
+    "'sha256-bviLPwiqrYk7TOtr5i2eb7I5exfGcGEvVuxmITyg//c='",
+    'https://s3.timeweb.cloud'
+)
+
+CSP_FONT_SRC = (
+    "'self'",
+    'https://fonts.gstatic.com',
+    'https://s3.timeweb.cloud'
+)
+
+CSP_SCRIPT_SRC = (
+    "'self'",
+    "'unsafe-inline'",
+    'https://use.fontawesome.com',
+    'https://cdnjs.cloudflare.com'  # Добавил для Bulma и Font Awesome
+)
 
 ROOT_URLCONF = 'utility_billing.urls'
 
