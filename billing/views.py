@@ -1,4 +1,3 @@
-# billing/views.py
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Rates, Usage
@@ -15,61 +14,48 @@ logger = logging.getLogger(__name__)
 
 @login_required
 def setup_rates(request):
+    # Пытаемся получить существующие тарифы пользователя, иначе создаем новый объект
+    rates, created = Rates.objects.get_or_create(user=request.user)
+
     if request.method == 'POST':
-        form = RatesForm(request.POST)
+        form = RatesForm(request.POST, instance=rates)
         if form.is_valid():
-            rates = form.save(commit=False)
-            rates.user = request.user
-            rates.save()
+            form.save()
             return redirect('billing:input_previous_usage')
     else:
-        form = RatesForm()
+        form = RatesForm(instance=rates)
+
     return render(request, 'billing/setup_rates.html', {'form': form})
 
 @login_required
 def input_previous_usage(request):
+    # Создаем новую форму для ввода предыдущего потребления
     if request.method == 'POST':
         form = UsageForm(request.POST)
         if form.is_valid():
             usage = form.save(commit=False)
             usage.user = request.user
-            usage.sewage = usage.hot_water + usage.cold_water  # Рассчитываем поле sewage
-            usage.save()  # Сохраняем объект Usage
+            usage.save()
             return redirect('billing:calculate_bill')
     else:
         form = UsageForm()
-    return render(request, 'billing/input_previous_usage.html', {'form': form})
 
+    return render(request, 'billing/input_previous_usage.html', {'form': form})
 
 @login_required
 def calculate_bill(request):
+    previous_usage = Usage.objects.filter(user=request.user).order_by('-month').first()
     if request.method == 'POST':
-        form = UsageForm(request.POST)
+        form = UsageForm(request.POST, instance=previous_usage if previous_usage else None)
         if form.is_valid():
             current_usage = form.save(commit=False)
             current_usage.user = request.user
-            previous_usage = Usage.objects.filter(user=request.user).order_by('-month').first()
-            rates = Rates.objects.get(user=request.user)
-
-            hot_water_bill = (current_usage.hot_water - previous_usage.hot_water) * rates.hot_water
-            cold_water_bill = (current_usage.cold_water - previous_usage.cold_water) * rates.cold_water
-            electricity_bill = (current_usage.electricity - previous_usage.electricity) * rates.electricity
-
-            if current_usage.auto_calculate_sewage:
-                sewage = current_usage.hot_water + current_usage.cold_water
-            else:
-                sewage = current_usage.sewage
-
-            sewage_bill = (sewage - previous_usage.sewage) * rates.sewage if previous_usage.sewage is not None and sewage is not None else 0
-
-            bill = hot_water_bill + cold_water_bill + electricity_bill + sewage_bill
-
             current_usage.save()
-            context = {'bill': bill, 'currency': rates.currency}
-            return render(request, 'billing/show_bill.html', context)
+            return redirect('billing:show_bill')
     else:
         form = UsageForm()
-        return render(request, 'billing/calculate_bill.html', {'form': form})
+
+    return render(request, 'billing/calculate_bill.html', {'form': form})
 
 def register(request):
     if request.user.is_authenticated:
@@ -85,13 +71,11 @@ def register(request):
             form = UserRegistrationForm()
         return render(request, 'billing/register.html', {'form': form})
 
-
 def user_login(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(username=username, password=password)
-
         if user:
             login(request, user)
             return redirect('billing:setup_rates')
@@ -99,17 +83,19 @@ def user_login(request):
             messages.error(request, "Invalid username or password.")
     return render(request, 'billing/login.html')
 
-
 def user_logout(request):
     logout(request)
     return redirect('login')
 
 def home(request):
     if request.user.is_authenticated:
-        return redirect('billing:setup_rates')  # Убедитесь, что перенаправление идет на существующий маршрут
+        # Проверяем, есть ли данные о тарифах
+        if Rates.objects.filter(user=request.user).exists():
+            return redirect('billing:calculate_bill')
+        else:
+            return redirect('billing:setup_rates')
     else:
-        return redirect('billing:register')  # Убедитесь, что перенаправление идет на существующий маршрут
-
+        return redirect('billing:register')
 
 @login_required
 def change_password(request):
