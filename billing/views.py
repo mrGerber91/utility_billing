@@ -14,9 +14,13 @@ logger = logging.getLogger(__name__)
 
 @login_required
 def setup_rates(request):
-    # Пытаемся получить существующие тарифы пользователя, иначе создаем новый объект
-    rates, created = Rates.objects.get_or_create(user=request.user)
-
+    try:
+        # Пытаемся получить существующие тарифы пользователя
+        rates = Rates.objects.get(user=request.user)
+    except Rates.DoesNotExist:
+        # Если тарифов нет, создаем пустой объект для формы, но не сохраняем его сразу
+        rates = Rates(user=request.user)
+    
     if request.method == 'POST':
         form = RatesForm(request.POST, instance=rates)
         if form.is_valid():
