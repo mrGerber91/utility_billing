@@ -69,7 +69,12 @@ CSP_SCRIPT_SRC = (
     "'self'",
     "'unsafe-inline'",
     'https://use.fontawesome.com',
-    'https://cdnjs.cloudflare.com'  # Добавил для Bulma и Font Awesome
+    'https://cdnjs.cloudflare.com'
+)
+
+CSP_IMG_SRC = (
+    "'self'",
+    'https://s3.timeweb.cloud'
 )
 
 ROOT_URLCONF = 'utility_billing.urls'
