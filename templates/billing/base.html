@@ -17,6 +17,7 @@
             background-attachment: fixed;
             display: flex;
             flex-direction: column;
+            overflow: hidden;
         }
         .container {
             flex: 1;
@@ -64,33 +65,33 @@
         }
         @keyframes starAnimation {
             0% { transform: translate(0, 0); }
-            25% { transform: translate(50px, -50px); }
-            50% { transform: translate(-50px, 50px); }
-            75% { transform: translate(50px, 50px); }
-            100% { transform: translate(-50px, -50px); }
+            25% { transform: translate(80vw, -80vh); }
+            50% { transform: translate(-80vw, 80vh); }
+            75% { transform: translate(80vw, 80vh); }
+            100% { transform: translate(-80vw, -80vh); }
         }
         @keyframes stripeAnimation {
             0% { transform: translate(0, 0); }
-            25% { transform: translate(50px, 0); }
-            50% { transform: translate(-50px, 0); }
-            75% { transform: translate(50px, 0); }
-            100% { transform: translate(-50px, 0); }
+            25% { transform: translate(80vw, 0); }
+            50% { transform: translate(-80vw, 0); }
+            75% { transform: translate(80vw, 0); }
+            100% { transform: translate(-80vw, 0); }
         }
         .star, .stripe {
             position: absolute;
-            width: 50px;
-            height: 50px;
+            width: 100px;
+            height: 100px;
             opacity: 0.7;
             background-size: contain;
             z-index: -1;
         }
         .star {
             background: url('https://s3.timeweb.cloud/a43db249-billing/stars.png') no-repeat center center;
-            animation: starAnimation 20s linear infinite;
+            animation: starAnimation 30s linear infinite;
         }
         .stripe {
             background: url('https://s3.timeweb.cloud/a43db249-billing/stripes.png') no-repeat center center;
-            animation: stripeAnimation 20s linear infinite;
+            animation: stripeAnimation 30s linear infinite;
         }
     </style>
 </head>
@@ -139,7 +140,7 @@
 <footer class="footer">
     <div class="content has-text-centered footer-content">
         <p>
-            <strong>Utility Billing</strong> by <a href="https://yourcompany.com">Your Company</a>. The source code is licensed
+            <strong>Utility Billing</strong> by <a href="https://github.com/mrGerber91">mrGerber team</a>. The source code is licensed
             <a href="http://opensource.org/licenses/mit-license.php">MIT</a>.
         </p>
     </div>
@@ -166,14 +167,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const hero = document.querySelector('.hero');
     const elements = ['star', 'stripe'];
 
-    function createAnimationElements(type, container) {
-        for (let i = 0; i < 5; i++) {
-            const element = document.createElement('div');
-            element.classList.add(type);
-            element.style.top = `${Math.random() * 100}%`;
-            element.style.left = `${Math.random() * 100}%`;
-            container.appendChild(element);
-        }
+    function createAnimationElement(type) {
+        const element = document.createElement('div');
+        element.classList.add(type);
+        element.style.top = `${Math.random() * 100}%`;
+        element.style.left = `${Math.random() * 100}%`;
+        document.body.appendChild(element);
     }
 
     if (hours >= 6 && hours < 18) {
@@ -184,8 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
         footer.style.color = 'white';
         hero.classList.add('hero-day');
         hero.classList.remove('hero-night');
-        createAnimationElements('stripe', navbar);
-        createAnimationElements('stripe', footer);
+        createAnimationElement('stripe');
     } else {
         document.body.style.backgroundImage = "url('https://s3.timeweb.cloud/a43db249-billing/black.webp')";
         navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
@@ -194,8 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
         footer.style.color = 'black';
         hero.classList.add('hero-night');
         hero.classList.remove('hero-day');
-        createAnimationElements('star', navbar);
-        createAnimationElements('star', footer);
+        createAnimationElement('star');
     }
 });
 </script>
