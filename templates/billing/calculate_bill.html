@@ -4,53 +4,40 @@
 
 {% block content %}
     <h2 class="title">Calculate Bill</h2>
-    <div class="field">
-        <label class="label">Month</label>
-        <div class="control">
-            {{ form.month }}
+    <form method="post">
+        {% csrf_token %}
+        <div class="field">
+            <label class="label">Month</label>
+            <div class="control">
+                {{ form.month }}
+            </div>
         </div>
-    </div>
-    <div class="field">
-        <label class="label">Hot Water Usage</label>
-        <div class="control">
-            {{ form.hot_water }}
+        <div class="field">
+            <label class="label">Hot Water Usage</label>
+            <div class="control">
+                {{ form.hot_water }}
+            </div>
         </div>
-    </div>
-    <div class="field">
-        <label class="label">Cold Water Usage</label>
-        <div class="control">
-            {{ form.cold_water }}
+        <div class="field">
+            <label class="label">Cold Water Usage</label>
+            <div class="control">
+                {{ form.cold_water }}
+            </div>
         </div>
-    </div>
-    <div class="field">
-        <label class="label">Electricity Usage</label>
-        <div class="control">
-            {{ form.electricity }}
+        <div class="field">
+            <label class="label">Electricity Usage</label>
+            <div class="control">
+                {{ form.electricity }}
+            </div>
         </div>
-    </div>
-    <div class="field">
-        <label class="label">Sewage Usage</label>
-        <div class="control">
-            {{ form.sewage }}
+        <div class="field">
+            <label class="label">Sewage Usage</label>
+            <div class="control">
+                {{ form.sewage }}
+            </div>
         </div>
-    </div>
-    <div class="control">
-        <button class="button is-primary" onclick="calculateBill()">Calculate Bill</button>
-    </div>
-    <p id="totalBill"></p>
-
-    <script>
-        function calculateBill() {
-            const hotWater = parseFloat(document.querySelector('[name="hot_water"]').value) || 0;
-            const coldWater = parseFloat(document.querySelector('[name="cold_water"]').value) || 0;
-            const electricity = parseFloat(document.querySelector('[name="electricity"]').value) || 0;
-            const sewage = parseFloat(document.querySelector('[name="sewage"]').value) || 0;
-            // Assuming rates are globally available or previously set
-            const total = (hotWater * globalRates.hotWater) +
-                          (coldWater * globalRates.coldWater) +
-                          (electricity * globalRates.electricity) +
-                          (sewage * globalRates.sewage);
-            document.getElementById('totalBill').innerText = `Total Bill: ${total.toFixed(2)}`;
-        }
-    </script>
+        <div class="control">
+            <button type="submit" class="button is-primary">Calculate Bill</button>
+        </div>
+    </form>
 {% endblock %}
