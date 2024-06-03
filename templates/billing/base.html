@@ -12,15 +12,23 @@
             <a class="navbar-item" href="{% url 'home' %}">
                 Utility Billing
             </a>
+
+            <!-- Бургер-кнопка на мобильных устройствах -->
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
         </div>
-        <div class="navbar-menu">
+
+        <div id="navbarBasicExample" class="navbar-menu">
             <div class="navbar-end">
                 {% if user.is_authenticated %}
                     <a class="navbar-item" href="{% url 'billing:logout' %}">
                         Logout
                     </a>
                 {% else %}
-                    <a class="navbar-item" href="{% url 'login' %}">
+                    <a class="navbar-item" href="{% url 'billing:login' %}">
                         Login
                     </a>
                     <a class="navbar-item" href="{% url 'billing:register' %}">
@@ -38,18 +46,31 @@
         </div>
     </section>
 </div>
-</body>
-<script>
 
+<script>
 document.addEventListener('DOMContentLoaded', () => {
-  const navbarBurger = document.querySelector('.navbar-burger');
-  if (navbarBurger) {
-    navbarBurger.addEventListener('click', () => {
-      const target = document.getElementById(navbarBurger.dataset.target);
-      navbarBurger.classList.toggle('is-active');
-      target.classList.toggle('is-active');
+  // Получить все элементы "navbar-burger"
+  const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+  // Проверить, есть ли хотя бы один элемент "navbar-burger"
+  if ($navbarBurgers.length > 0) {
+
+    // Добавить событие клика на каждый из них
+    $navbarBurgers.forEach( el => {
+      el.addEventListener('click', () => {
+
+        // Получить целевой элемент "data-target"
+        const target = el.dataset.target;
+        const $target = document.getElementById(target);
+
+        // Переключить классы "is-active" на "navbar-burger" и целевом элементе "navbar-menu"
+        el.classList.toggle('is-active');
+        $target.classList.toggle('is-active');
+
+      });
     });
   }
 });
 </script>
+</body>
 </html>
