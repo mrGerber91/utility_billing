@@ -60,6 +60,39 @@ def calculate_bill(request):
         form = UsageForm(instance=previous_usage)  # Предзаполнение формы последними данными
     return render(request, 'billing/calculate_bill.html', {'form': form})
 
+@login_required
+def show_bill(request):
+    # Получаем последние данные использования и тарифы для расчета счета
+    try:
+        current_usage = Usage.objects.filter(user=request.user).order_by('-id').first()
+        rates = Rates.objects.get(user=request.user)
+
+        # Расчет счета
+        hot_water_bill = current_usage.hot_water * rates.hot_water
+        cold_water_bill = current_usage.cold_water * rates.cold_water
+        electricity_bill = current_usage.electricity * rates.electricity
+
+        if current_usage.sewage:
+            sewage_bill = current_usage.sewage * rates.sewage
+        else:
+            sewage_bill = (current_usage.hot_water + current_usage.cold_water) * rates.sewage
+
+        bill = hot_water_bill + cold_water_bill + electricity_bill + sewage_bill
+
+        context = {
+            'bill': bill,
+            'currency': rates.currency,
+            'current_usage': current_usage  # Передаем последние использованные данные для отображения
+        }
+
+    except (Usage.DoesNotExist, Rates.DoesNotExist):
+        # Если нет данных или тарифов, перенаправляем на страницу ввода тарифов или предыдущих данных
+        return redirect('billing:setup_rates')
+
+    return render(request, 'billing/show_bill.html', context)
+
+
+
 def register(request):
     if request.user.is_authenticated:
         return redirect('billing:profile')
