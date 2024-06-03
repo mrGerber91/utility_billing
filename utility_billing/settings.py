@@ -55,7 +55,8 @@ CSP_STYLE_SRC = (
     "'self'",
     'https://fonts.googleapis.com',
     'https://cdnjs.cloudflare.com',
-    "'sha256-bviLPwiqrYk7TOtr5i2eb7I5exfGcGEvVuxmITyg//c='",
+    "'sha256-bviLPwiqrYk7TOtr5i2eb7I5exfGcGEvVuxmITyg//c='",  # Существующий хэш
+    "'sha256-S3Eh6G36lzyzDiA6BYjAzwhxQZ8N7bxPPCABG9GbHkk='",  # Хэш для @keyframes backgroundAnimation
     'https://s3.timeweb.cloud'
 )
 
