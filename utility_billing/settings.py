@@ -46,7 +46,7 @@ CSP_DEFAULT_SRC = ("'self'", 'https://mrgerber91-utility-billing-690d.twc1.net')
 CSP_STYLE_SRC = ("'self'", 'https://fonts.googleapis.com', 'https://cdnjs.cloudflare.com',
                  "'sha256-bviLPwiqrYk7TOtr5i2eb7I5exfGcGEvVuxmITyg//c='")
 CSP_FONT_SRC = ("'self'", 'https://fonts.gstatic.com')
-CSP_SCRIPT_SRC = ("'self'", 'https://use.fontawesome.com', "'sha256-8kn/LzAuvHlDMDRTOv/fN8IxCVALd2/WLm6pIgtWXyE='")
+CSP_SCRIPT_SRC = ("'self'", 'https://use.fontawesome.com', "'sha256-8kn/LzAuvHlDMDRTOv/fN8IxCVALd2/WLm6pIgtWXyE='", "'unsafe-inline'")
 
 ROOT_URLCONF = 'utility_billing.urls'
 
