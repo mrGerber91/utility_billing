@@ -92,7 +92,7 @@
     <footer class="footer">
         <div class="content has-text-centered">
             <p>
-                <strong>Utility Billing</strong> by <a href="https://github.com/mrGerber91">mrGerber company</a>. The source code is licensed
+                <strong>Utility Billing</strong> by <a href="https://yourcompany.com">Your Company</a>. The source code is licensed
                 <a href="http://opensource.org/licenses/mit-license.php">MIT</a>.
             </p>
         </div>
@@ -101,17 +101,27 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
-  if ($navbarBurgers.length > 0) {
-    $navbarBurgers.forEach(el => {
-      el.addEventListener('click', () => {
-        const target = el.dataset.target;
-        const $target = document.getElementById(target);
-        el.classList.toggle('is-active');
-        $target.classList.toggle('is-active');
-      });
-    });
-  }
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+    if ($navbarBurgers.length > 0) {
+        $navbarBurgers.forEach(el => {
+            el.addEventListener('click', () => {
+                const target = el.dataset.target;
+                const $target = document.getElementById(target);
+                el.classList.toggle('is-active');
+                $target.classList.toggle('is-active');
+            });
+        });
+    }
+
+    // Change background image based on the time of day
+    const hours = new Date().getHours();
+    if (hours >= 6 && hours < 18) {
+        document.body.style.backgroundImage = "url('https://s3.timeweb.cloud/a43db249-billing/white.webp')";
+    } else {
+        document.body.style.backgroundImage = "url('https://s3.timeweb.cloud/a43db249-billing/black.webp')";
+    }
+    document.body.style.backgroundSize = "cover";
+    document.body.style.backgroundRepeat = "no-repeat";
 });
 </script>
 </body>
