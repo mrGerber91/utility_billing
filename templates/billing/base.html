@@ -24,7 +24,7 @@
         }
         .navbar, .footer {
             position: relative;
-            z-index: 1;
+            z-index: 2;
             overflow: hidden;
             height: 70px; /* Уменьшаем размер подвала и навигационной панели */
         }
@@ -35,12 +35,12 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 0;
+            z-index: 1;
             pointer-events: none;
         }
         .navbar-item, .footer-content {
             position: relative;
-            z-index: 1;
+            z-index: 3;
             color: white;
         }
         .navbar-burger span {
@@ -51,7 +51,7 @@
         }
         .hero {
             color: white;
-            z-index: 1;
+            z-index: 2;
         }
         .hero-day {
             background-color: rgba(0, 0, 0, 0.5);
@@ -83,14 +83,14 @@
             height: 100px;
             opacity: 0.7;
             background-size: contain;
-            z-index: -1;
+            z-index: 1;
         }
         .star {
-            background: url('https://s3.timeweb.cloud/a43db249-billing/stars.png') no-repeat center center;
+            background: url('https://s3.timeweb.cloud/a43db249-billing/star.png') no-repeat center center;
             animation: starAnimation 30s linear infinite;
         }
         .stripe {
-            background: url('https://s3.timeweb.cloud/a43db249-billing/stripes.png') no-repeat center center;
+            background: url('https://s3.timeweb.cloud/a43db249-billing/stripe.png') no-repeat center center;
             animation: stripeAnimation 30s linear infinite;
         }
     </style>
@@ -165,13 +165,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const navbar = document.querySelector('.navbar');
     const footer = document.querySelector('.footer');
     const hero = document.querySelector('.hero');
-    const elements = ['star', 'stripe'];
 
     function createAnimationElement(type) {
         const element = document.createElement('div');
         element.classList.add(type);
-        element.style.top = `${Math.random() * 100}%`;
-        element.style.left = `${Math.random() * 100}%`;
+        element.style.top = `${Math.random() * 80}vh`;
+        element.style.left = `${Math.random() * 80}vw`;
         document.body.appendChild(element);
     }
 
