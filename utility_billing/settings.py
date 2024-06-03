@@ -10,7 +10,7 @@ SECRET_KEY = 'django-insecure-%z)og3_ohsi)25y)fj=m!+!=04!xfu3#uizmvut81y_o#=u131
 
 DEBUG = True
 
-ALLOWED_HOSTS = [ 'https://mrgerber91-utility-billing-690d.twc1.net']
+ALLOWED_HOSTS = ['*']
 CORS_ORIGIN_WHITELIST = ['https://mrgerber91-utility-billing-690d.twc1.net']
 CSRF_TRUSTED_ORIGINS = ['https://mrgerber91-utility-billing-690d.twc1.net']
 CORS_ALLOWED_ORIGINS = [ 'https://mrgerber91-utility-billing-690d.twc1.net']
