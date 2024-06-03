@@ -55,7 +55,7 @@ def calculate_bill(request):
             current_usage = form.save(commit=False)
             current_usage.user = request.user
             current_usage.save()
-            return redirect('billing:show_bill')
+            return redirect('billing/show_bill')
     else:
         form = UsageForm()
 
