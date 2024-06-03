@@ -6,6 +6,6 @@
     <h2 class="title">Your Bill</h2>
     <p>Your total bill for this month is: <strong>{{ bill }} {{ currency }}</strong></p>
     <div class="control">
-        <button onclick="window.location.href='{% url 'billing/calculate_bill' %}'" class="button is-primary">Calculate Again</button>
+        <button onclick="window.location.href='{% url 'billing:calculate_bill' %}'" class="button is-primary">Calculate Again</button>
     </div>
 {% endblock %}
