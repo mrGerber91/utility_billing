@@ -3,6 +3,7 @@ from django.urls import path, include
 from . import views
 from rest_framework.routers import DefaultRouter
 from .api_views import RatesViewSet, UsageViewSet
+from .views import show_bill
 
 app_name = 'billing'
 
