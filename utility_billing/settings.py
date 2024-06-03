@@ -13,7 +13,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 CORS_ORIGIN_WHITELIST = ['https://mrgerber91-utility-billing-690d.twc1.net']
 CSRF_TRUSTED_ORIGINS = ['https://mrgerber91-utility-billing-690d.twc1.net']
-CORS_ALLOWED_ORIGINS = [ 'https://mrgerber91-utility-billing-690d.twc1.net']
+CORS_ALLOWED_ORIGINS = ['https://mrgerber91-utility-billing-690d.twc1.net']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
