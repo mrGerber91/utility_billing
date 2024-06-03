@@ -41,13 +41,12 @@ def input_previous_usage(request):
     return render(request, 'billing/input_previous_usage.html', {'form': form})
 
 
-
 @login_required
 def calculate_bill(request):
     if request.method == 'POST':
-        current_usage_form = UsageForm(request.POST)
-        if current_usage_form.is_valid():
-            current_usage = current_usage_form.save(commit=False)
+        form = UsageForm(request.POST)
+        if form.is_valid():
+            current_usage = form.save(commit=False)
             current_usage.user = request.user
             previous_usage = Usage.objects.filter(user=request.user).order_by('-month').first()
             rates = Rates.objects.get(user=request.user)
@@ -65,14 +64,12 @@ def calculate_bill(request):
 
             bill = hot_water_bill + cold_water_bill + electricity_bill + sewage_bill
 
-            context = {'bill': bill, 'currency': rates.currency}
             current_usage.save()
+            context = {'bill': bill, 'currency': rates.currency}
             return render(request, 'billing/show_bill.html', context)
-            
-    # Если действие не POST, показываем форму для ввода данных
-    current_usage_form = UsageForm()
-    return render(request, 'billing/calculate_bill.html', {'form': current_usage_form})
-
+    else:
+        form = UsageForm()
+        return render(request, 'billing/calculate_bill.html', {'form': form})
 
 def register(request):
     if request.user.is_authenticated:
