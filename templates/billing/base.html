@@ -25,6 +25,7 @@
             position: relative;
             z-index: 1;
             overflow: hidden;
+            height: 70px; /* Уменьшаем размер подвала и навигационной панели */
         }
         .navbar::before, .footer::before {
             content: "";
@@ -35,7 +36,6 @@
             height: 100%;
             z-index: 0;
             pointer-events: none;
-            background-size: cover;
         }
         .navbar-item, .footer-content {
             position: relative;
@@ -49,32 +49,52 @@
             background-color: rgba(255, 255, 255, 0.2);
         }
         .hero {
-            background-color: rgba(0, 0, 0, 0.5);
             color: white;
             z-index: 1;
         }
+        .hero-day {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .hero-night {
+            background-color: rgba(255, 255, 255, 0.5);
+            color: black;
+        }
+        .hero-body {
+            padding: 1.5rem 1.5rem; /* Уменьшаем размер рамки для приветственной надписи */
+        }
         @keyframes starAnimation {
-            0% { background-position: 0 0; }
-            100% { background-position: 2000px 2000px; }
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(50px, -50px); }
+            50% { transform: translate(-50px, 50px); }
+            75% { transform: translate(50px, 50px); }
+            100% { transform: translate(-50px, -50px); }
         }
         @keyframes stripeAnimation {
-            0% { background-position: 0 0; }
-            100% { background-position: 2000px 0; }
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(50px, 0); }
+            50% { transform: translate(-50px, 0); }
+            75% { transform: translate(50px, 0); }
+            100% { transform: translate(-50px, 0); }
         }
-        .stars {
-            background: url('https://s3.timeweb.cloud/a43db249-billing/stars.png') repeat;
-            animation: starAnimation 60s linear infinite;
-            background-size: 50px 50px; /* Уменьшаем размер звездочек */
+        .star, .stripe {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            opacity: 0.7;
+            background-size: contain;
+            z-index: -1;
         }
-        .stripes {
-            background: url('https://s3.timeweb.cloud/a43db249-billing/stripes.png') repeat-x;
-            animation: stripeAnimation 10s linear infinite;
-            background-size: 50px 50px; /* Уменьшаем размер полосочек */
+        .star {
+            background: url('https://s3.timeweb.cloud/a43db249-billing/star.png') no-repeat center center;
+            animation: starAnimation 20s linear infinite;
+        }
+        .stripe {
+            background: url('https://s3.timeweb.cloud/a43db249-billing/stripe.png') no-repeat center center;
+            animation: stripeAnimation 20s linear infinite;
         }
     </style>
 </head>
 <body>
-<div class="navbar stars stripes" id="navbar"></div>
 <div class="container">
     <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
@@ -116,7 +136,7 @@
     </section>
 </div>
 
-<footer class="footer stars stripes">
+<footer class="footer">
     <div class="content has-text-centered footer-content">
         <p>
             <strong>Utility Billing</strong> by <a href="https://yourcompany.com">Your Company</a>. The source code is licensed
@@ -143,18 +163,39 @@ document.addEventListener('DOMContentLoaded', () => {
     const hours = new Date().getHours();
     const navbar = document.querySelector('.navbar');
     const footer = document.querySelector('.footer');
+    const hero = document.querySelector('.hero');
+    const elements = ['star', 'stripe'];
+
+    function createAnimationElements(type, container) {
+        for (let i = 0; i < 5; i++) {
+            const element = document.createElement('div');
+            element.classList.add(type);
+            element.style.top = `${Math.random() * 100}%`;
+            element.style.left = `${Math.random() * 100}%`;
+            container.appendChild(element);
+        }
+    }
+
     if (hours >= 6 && hours < 18) {
         document.body.style.backgroundImage = "url('https://s3.timeweb.cloud/a43db249-billing/white.webp')";
-        navbar.classList.add('stripes');
-        footer.classList.add('stripes');
-        navbar.classList.remove('stars');
-        footer.classList.remove('stars');
+        navbar.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+        footer.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+        navbar.style.color = 'white';
+        footer.style.color = 'white';
+        hero.classList.add('hero-day');
+        hero.classList.remove('hero-night');
+        createAnimationElements('stripe', navbar);
+        createAnimationElements('stripe', footer);
     } else {
         document.body.style.backgroundImage = "url('https://s3.timeweb.cloud/a43db249-billing/black.webp')";
-        navbar.classList.add('stars');
-        footer.classList.add('stars');
-        navbar.classList.remove('stripes');
-        footer.classList.remove('stripes');
+        navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
+        footer.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
+        navbar.style.color = 'black';
+        footer.style.color = 'black';
+        hero.classList.add('hero-night');
+        hero.classList.remove('hero-day');
+        createAnimationElements('star', navbar);
+        createAnimationElements('star', footer);
     }
 });
 </script>
