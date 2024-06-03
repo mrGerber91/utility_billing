@@ -4,9 +4,10 @@
     <title>{% block title %}Utility Billing{% endblock %}</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    {% load static %}
+    <link rel="icon" href="{% static 'favicon.ico' %}">
 </head>
 <body>
-<link rel="icon" href="{% static 'favicon.ico' %}">
 <div class="container">
     <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
@@ -16,10 +17,10 @@
 
             <!-- Бургер-кнопка на мобильных устройствах -->
             <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-    <span aria-hidden="true"></span>
-    <span aria-hidden="true"></span>
-    <span aria-hidden="true"></span>
-</a>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
         </div>
 
         <div id="navbarBasicExample" class="navbar-menu">
@@ -50,24 +51,14 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  // Получить все элементы "navbar-burger"
   const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
-
-  // Проверить, есть ли хотя бы один элемент "navbar-burger"
   if ($navbarBurgers.length > 0) {
-
-    // Добавить событие клика на каждый из них
-    $navbarBurgers.forEach( el => {
+    $navbarBurgers.forEach(el => {
       el.addEventListener('click', () => {
-
-        // Получить целевой элемент "data-target"
         const target = el.dataset.target;
         const $target = document.getElementById(target);
-
-        // Переключить классы "is-active" на "navbar-burger" и целевом элементе "navbar-menu"
         el.classList.toggle('is-active');
         $target.classList.toggle('is-active');
-
       });
     });
   }
