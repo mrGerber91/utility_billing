@@ -11,10 +11,18 @@
     <style>
         body {
             background-color: #f5f5f5;
+            background-size: cover;
+            background-repeat: no-repeat;
         }
         .navbar {
             background-color: #00d1b2;
             color: white;
+            animation: backgroundAnimation 10s infinite alternate;
+        }
+        @keyframes backgroundAnimation {
+            0% { background-color: #00d1b2; }
+            50% { background-color: #209cee; }
+            100% { background-color: #00d1b2; }
         }
         .navbar-item {
             color: white;
@@ -92,7 +100,7 @@
     <footer class="footer">
         <div class="content has-text-centered">
             <p>
-                <strong>Utility Billing</strong> by <a href="https://github.com/mrGerber91">mrGerber company</a>. The source code is licensed
+                <strong>Utility Billing</strong> by <a href="https://yourcompany.com">Your Company</a>. The source code is licensed
                 <a href="http://opensource.org/licenses/mit-license.php">MIT</a>.
             </p>
         </div>
@@ -120,8 +128,6 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         document.body.style.backgroundImage = "url('https://s3.timeweb.cloud/a43db249-billing/black.webp')";
     }
-    document.body.style.backgroundSize = "cover";
-    document.body.style.backgroundRepeat = "no-repeat";
 });
 </script>
 </body>
