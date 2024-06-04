@@ -69,11 +69,16 @@
         }
         .star, .stripe {
             position: absolute;
-            width: 50px; /* Уменьшаем размер */
-            height: 50px; /* Уменьшаем размер */
+            width: 50px;
+            height: 50px;
             background-size: contain;
             z-index: 1;
+            top: 0;  // Добавить эту строку
+            right: 0; // Добавить эту строку
+            bottom: 0; // Добавить эту строку
+            left: 0; // Добавить эту строку
         }
+
         .star {
             background: url('https://s3.timeweb.cloud/a43db249-billing/star.png') no-repeat center center / contain;
             animation: starAnimation 30s linear infinite;
@@ -95,7 +100,7 @@
         }
     </style>
 </head>
-<body>
+<body style="overflow: hidden;">
 <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
         <a class="navbar-item" href="{% url 'home' %}">
@@ -156,6 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+});
 
     // Change background image and animation based on the time of day
     const hours = new Date().getHours();
