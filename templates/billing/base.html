@@ -18,6 +18,9 @@
             display: flex;
             flex-direction: column;
             overflow: auto;
+            -ms-text-size-adjust: 100%; /* IE 10+ */
+            -webkit-text-size-adjust: 100%; /* Safari, Chrome, iOS */
+            text-size-adjust: 100%; /* Standard */
         }
         .container {
             flex: 1;
@@ -81,6 +84,10 @@
         .stripe {
             background: url('https://s3.timeweb.cloud/a43db249-billing/stripe.png') no-repeat center center / contain;
             animation: stripeAnimation 30s linear infinite;
+        }
+        .btn {
+            -webkit-user-select: none; /* Safari */
+            user-select: none; /* Standard */
         }
         @media (max-width: 768px) {
             .navbar-burger {
