@@ -1,16 +1,19 @@
 from pathlib import Path
 import os
+from dotenv import load_dotenv
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Static files (CSS, JavaScript, Images)
-STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Additional locations of static files
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'your_app/static'),
 ]
+
+SECURE_CONTENT_TYPE_NOSNIFF = True
+
 
 SECRET_KEY = 'django-insecure-%z)og3_ohsi)25y)fj=m!+!=04!xfu3#uizmvut81y_o#=u131'
 
@@ -35,6 +38,7 @@ INSTALLED_APPS = [
     'compressor',
     'sslserver',
     'corsheaders',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -49,7 +53,6 @@ MIDDLEWARE = [
     'csp.middleware.CSPMiddleware',
     'corsheaders.middleware.CorsMiddleware',
 
-    'billing.middleware.SecurityAndCacheMiddleware',
 ]
 
 CSP_DEFAULT_SRC = (
@@ -197,3 +200,20 @@ AUTHENTICATION_BACKENDS = [
 'django.contrib.auth.backends.ModelBackend'
 ]
 
+load_dotenv()
+
+AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
+AWS_S3_REGION_NAME = os.getenv('AWS_S3_REGION_NAME')
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.timeweb.cloud'
+
+# Настройки статических файлов
+STATIC_LOCATION = 'static'
+STATIC_URL = f'https://a43db249-billing.s3.timeweb.cloud/static/'
+STATICFILES_STORAGE = 'utility_billing.storage_backends.StaticStorage'
+
+# Настройки медиа файлов
+MEDIA_LOCATION = 'media'
+DEFAULT_FILE_STORAGE = 'utility_billing.storage_backends.MediaStorage'
+MEDIA_URL = f'https://a43db249-billing.s3.timeweb.cloud/media/'
