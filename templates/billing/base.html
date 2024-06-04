@@ -17,7 +17,6 @@
             background-attachment: fixed;
             display: flex;
             flex-direction: column;
-            overflow: auto;
         }
         .container {
             flex: 1;
@@ -25,7 +24,6 @@
         .navbar, .footer {
             position: relative;
             z-index: 2;
-            overflow: hidden;
             height: 70px;
             background-color: rgba(0, 0, 0, 0.5);
             transition: background-color 0.5s, color 0.5s;
@@ -67,7 +65,7 @@
         }
     </style>
 </head>
-<body style="overflow: hidden;">
+<body>
 <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
         <a class="navbar-item" href="{% url 'home' %}">
