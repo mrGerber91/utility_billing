@@ -17,6 +17,11 @@
             background-attachment: fixed;
             display: flex;
             flex-direction: column;
+            overflow: auto;
+            text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+            user-select: none;
+            -webkit-user-select: none;
         }
         .container {
             flex: 1;
@@ -24,6 +29,7 @@
         .navbar, .footer {
             position: relative;
             z-index: 2;
+            overflow: hidden;
             height: 70px;
             background-color: rgba(0, 0, 0, 0.5);
             transition: background-color 0.5s, color 0.5s;
@@ -33,6 +39,8 @@
             z-index: 3;
             color: white;
             transition: color 0.5s;
+            /* Улучшение видимости текста для бургер-меню */
+            background-color: rgba(0, 0, 0, 0.7); /* Делаем фон немного темнее для читаемости */
         }
         .navbar-burger span {
             background-color: white;
@@ -51,7 +59,6 @@
         .hero-body {
             padding: 1.5rem 1.5rem;
         }
-       
         @media (max-width: 768px) {
             .navbar-burger {
                 display: block;
@@ -125,30 +132,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 $target.classList.toggle('is-active');
             });
         });
-    }
-
-    // Переносим код изменения фона и анимации внутрь обработчика DOMContentLoaded
-    const hours = new Date().getHours();
-    const navbar = document.querySelector('.navbar');
-    const footer = document.querySelector('.footer');
-    const hero = document.querySelector('.hero');
-
-    if (hours >= 6 && hours < 20) {
-        document.body.style.backgroundImage = "url('https://s3.timeweb.cloud/a43db249-billing/white.webp')";
-        navbar.style.backgroundColor = 'rgba(255,255,255,0.5)';
-        footer.style.backgroundColor = 'rgba(255,255,255,0.5)';
-        navbar.style.color = 'black';
-        footer.style.color = 'black';
-        hero.classList.add('hero-day');
-        hero.classList.remove('hero-night');
-    } else {
-        document.body.style.backgroundImage = "url('https://s3.timeweb.cloud/a43db249-billing/black.webp')";
-        navbar.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-        footer.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-        navbar.style.color = 'white';
-        footer.style.color = 'white';
-        hero.classList.add('hero-night');
-        hero.classList.remove('hero-day');
     }
 });
 </script>
