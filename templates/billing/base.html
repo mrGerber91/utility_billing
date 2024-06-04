@@ -17,7 +17,7 @@
             background-attachment: fixed;
             display: flex;
             flex-direction: column;
-            overflow: hidden;
+            overflow: auto;
         }
         .container {
             flex: 1;
@@ -26,18 +26,21 @@
             position: relative;
             z-index: 2;
             overflow: hidden;
-            height: 70px; /* Уменьшаем размер подвала и навигационной панели */
-            background-color: rgba(0, 0, 0, 0.5); /* Цвет по умолчанию для удобства */
-            transition: background-color 0.5s, color 0.5s; /* Плавные переходы для цветов */
+            height: 70px;
+            background-color: rgba(0, 0, 0, 0.5);
+            transition: background-color 0.5s, color 0.5s;
         }
         .navbar-item, .footer-content {
             position: relative;
             z-index: 3;
             color: white;
-            transition: color 0.5s; /* Плавный переход для цвета текста */
+            transition: color 0.5s;
         }
         .navbar-burger span {
             background-color: white;
+        }
+        .navbar-burger {
+            display: none;
         }
         .navbar-item:hover {
             background-color: rgba(255, 255, 255, 0.2);
@@ -45,10 +48,10 @@
         .hero {
             color: white;
             z-index: 2;
-            transition: background-color 0.5s, color 0.5s; /* Плавные переходы для цветов */
+            transition: background-color 0.5s, color 0.5s;
         }
         .hero-body {
-            padding: 1.5rem 1.5rem; /* Уменьшаем размер рамки для приветственной надписи */
+            padding: 1.5rem 1.5rem;
         }
         @keyframes starAnimation {
             0% { transform: translate(0, 0); }
@@ -78,6 +81,17 @@
         .stripe {
             background: url('https://s3.timeweb.cloud/a43db249-billing/stripe.png') no-repeat center center / contain;
             animation: stripeAnimation 30s linear infinite;
+        }
+        @media (max-width: 768px) {
+            .navbar-burger {
+                display: block;
+            }
+            .navbar-menu {
+                display: none;
+            }
+            .navbar-menu.is-active {
+                display: block;
+            }
         }
     </style>
 </head>
