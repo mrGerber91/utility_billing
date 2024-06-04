@@ -161,9 +161,8 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-});
 
-    // Change background image and animation based on the time of day
+    // Переносим код изменения фона и анимации внутрь обработчика DOMContentLoaded
     const hours = new Date().getHours();
     const navbar = document.querySelector('.navbar');
     const footer = document.querySelector('.footer');
