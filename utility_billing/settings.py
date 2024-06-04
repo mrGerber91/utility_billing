@@ -27,7 +27,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'billing.apps.BillingConfig',
     'rest_framework',
-    'captcha',
+    'captcha',
+
     'compressor',
     'sslserver',
     'corsheaders',
@@ -40,9 +41,12 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
     'csp.middleware.CSPMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+
+    'billing.middleware.SecurityAndCacheMiddleware',
 ]
 
 CSP_DEFAULT_SRC = (
@@ -185,7 +189,8 @@ COMPRESS_ENABLED = True
 COMPRESS_CSS_FILTERS = ['compressor.filters.css_default.CssAbsoluteFilter', 'compressor.filters.cssmin.CSSMinFilter']
 COMPRESS_JS_FILTERS = ['compressor.filters.jsmin.JSMinFilter']
 
-AUTHENTICATION_BACKENDS = [
+AUTHENTICATION_BACKENDS = [
+
 'django.contrib.auth.backends.ModelBackend'
 ]
 

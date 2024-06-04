@@ -16,13 +16,17 @@
         <div class="field">
             <label class="label">Username</label>
             <div class="control">
-                <input class="input" type="text" name="username" placeholder="Username">
+                <label>
+                    <input class="input" type="text" name="username" placeholder="Username" autocomplete="username">
+                </label>
             </div>
         </div>
         <div class="field">
             <label class="label">Password</label>
             <div class="control">
-                <input class="input" type="password" name="password" placeholder="Password">
+                <label>
+                    <input class="input" type="password" name="password" placeholder="Password" autocomplete="current-password">
+                </label>
             </div>
         </div>
         <a href="{% url 'password_reset' %}">Forgot your password?</a>
@@ -31,4 +35,3 @@
         </div>
     </form>
 {% endblock %}
-

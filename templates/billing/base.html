@@ -10,6 +10,8 @@
     <link rel="icon" href="https://s3.timeweb.cloud/a43db249-billing/favicon.ico">
     <style>
         html, body {
+            -webkit-text-size-adjust: 100%;
+            -webkit-user-select: none;
             height: 100%;
             margin: 0;
             background-size: cover;
@@ -18,6 +20,9 @@
             display: flex;
             flex-direction: column;
             overflow: auto;
+            text-size-adjust: 100%;
+            user-select: none;
+           
         }
         .container {
             flex: 1;
@@ -35,6 +40,8 @@
             z-index: 3;
             color: white;
             transition: color 0.5s;
+            /* Улучшение видимости текста для бургер-меню */
+            background-color: rgba(0, 0, 0, 0.7); /* Делаем фон немного темнее для читаемости */
         }
         .navbar-burger span {
             background-color: white;
@@ -52,35 +59,6 @@
         }
         .hero-body {
             padding: 1.5rem 1.5rem;
-        }
-        @keyframes starAnimation {
-            0% { transform: translate(0, 0); }
-            25% { transform: translate(50vw, -50vh); }
-            50% { transform: translate(-50vw, 50vh); }
-            75% { transform: translate(50vw, 50vh); }
-            100% { transform: translate(-50vw, -50vh); }
-        }
-        @keyframes stripeAnimation {
-            0% { transform: translate(0, 0); }
-            25% { transform: translate(50vw, 0); }
-            50% { transform: translate(-50vw, 0); }
-            75% { transform: translate(50vw, 0); }
-            100% { transform: translate(-50vw, 0); }
-        }
-        .star, .stripe {
-            position: absolute;
-            width: 50px; /* Уменьшаем размер */
-            height: 50px; /* Уменьшаем размер */
-            background-size: contain;
-            z-index: 1;
-        }
-        .star {
-            background: url('https://s3.timeweb.cloud/a43db249-billing/star.png') no-repeat center center / contain;
-            animation: starAnimation 30s linear infinite;
-        }
-        .stripe {
-            background: url('https://s3.timeweb.cloud/a43db249-billing/stripe.png') no-repeat center center / contain;
-            animation: stripeAnimation 30s linear infinite;
         }
         @media (max-width: 768px) {
             .navbar-burger {
@@ -157,7 +135,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-
     // Change background image and animation based on the time of day
     const hours = new Date().getHours();
     const navbar = document.querySelector('.navbar');
