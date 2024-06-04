@@ -27,21 +27,14 @@
             z-index: 2;
             overflow: hidden;
             height: 70px; /* Уменьшаем размер подвала и навигационной панели */
-        }
-        .navbar::before, .footer::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            pointer-events: none;
+            background-color: rgba(0, 0, 0, 0.5); /* Цвет по умолчанию для удобства */
+            transition: background-color 0.5s, color 0.5s; /* Плавные переходы для цветов */
         }
         .navbar-item, .footer-content {
             position: relative;
             z-index: 3;
             color: white;
+            transition: color 0.5s; /* Плавный переход для цвета текста */
         }
         .navbar-burger span {
             background-color: white;
@@ -52,13 +45,7 @@
         .hero {
             color: white;
             z-index: 2;
-        }
-        .hero-day {
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-        .hero-night {
-            background-color: rgba(255, 255, 255, 0.5);
-            color: black;
+            transition: background-color 0.5s, color 0.5s; /* Плавные переходы для цветов */
         }
         .hero-body {
             padding: 1.5rem 1.5rem; /* Уменьшаем размер рамки для приветственной надписи */
@@ -95,30 +82,30 @@
     </style>
 </head>
 <body>
+<nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="{% url 'home' %}">
+            <strong>Utility Billing</strong>
+        </a>
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+    <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-end">
+            <a class="navbar-item" href="{% url 'home' %}">Home</a>
+            {% if user.is_authenticated %}
+                <a class="navbar-item" href="{% url 'billing:logout' %}">Logout</a>
+            {% else %}
+                <a class="navbar-item" href="{% url 'billing:login' %}">Login</a>
+                <a class="navbar-item" href="{% url 'billing:register' %}">Register</a>
+            {% endif %}
+        </div>
+    </div>
+</nav>
 <div class="container">
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-            <a class="navbar-item" href="{% url 'home' %}">
-                <strong>Utility Billing</strong>
-            </a>
-            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-            </a>
-        </div>
-        <div id="navbarBasicExample" class="navbar-menu">
-            <div class="navbar-end">
-                {% if user.is_authenticated %}
-                    <a class="navbar-item" href="{% url 'billing:logout' %}">Logout</a>
-                {% else %}
-                    <a class="navbar-item" href="{% url 'billing:login' %}">Login</a>
-                    <a class="navbar-item" href="{% url 'billing:register' %}">Register</a>
-                {% endif %}
-            </div>
-        </div>
-    </nav>
-
     <section class="hero is-medium">
         <div class="hero-body">
             <div class="container">
@@ -127,7 +114,6 @@
             </div>
         </div>
     </section>
-
     <section class="section">
         <div class="container">
             {% block content %}
@@ -135,7 +121,6 @@
         </div>
     </section>
 </div>
-
 <footer class="footer">
     <div class="content has-text-centered footer-content">
         <p>
@@ -144,7 +129,6 @@
         </p>
     </div>
 </footer>
-
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
@@ -173,21 +157,21 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.appendChild(element);
     }
 
-    if (hours >= 6 && hours < 18) {
+    if (hours >= 6 && hours < 20) {
         document.body.style.backgroundImage = "url('https://s3.timeweb.cloud/a43db249-billing/white.webp')";
-        navbar.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-        footer.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-        navbar.style.color = 'white';
-        footer.style.color = 'white';
+        navbar.style.backgroundColor = 'rgba(255,255,255,0.5)';
+        footer.style.backgroundColor = 'rgba(255,255,255,0.5)';
+        navbar.style.color = 'black';
+        footer.style.color = 'black';
         hero.classList.add('hero-day');
         hero.classList.remove('hero-night');
         createAnimationElement('stripe');
     } else {
         document.body.style.backgroundImage = "url('https://s3.timeweb.cloud/a43db249-billing/black.webp')";
-        navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
-        footer.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
-        navbar.style.color = 'black';
-        footer.style.color = 'black';
+        navbar.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+        footer.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+        navbar.style.color = 'white';
+        footer.style.color = 'white';
         hero.classList.add('hero-night');
         hero.classList.remove('hero-day');
         createAnimationElement('star');

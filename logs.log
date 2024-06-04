@@ -210,3 +210,10 @@ django.template.exceptions.TemplateDoesNotExist: billing/../templates/accounts/p
 2024-06-02 12:32:38,386 - DEBUG - AXES: Getting access attempts that are newer than 2024-06-02 08:32:38.386015+00:00
 2024-06-02 12:32:38,514 - INFO - AXES: Cleaned up 0 expired access attempts from database that were older than 2024-06-02 08:32:38.386015+00:00
 2024-06-02 12:32:38,514 - INFO - AXES: Successful login by {username: "********************", ip_address: "********************", user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0", path_info: "/accounts/login/"}.
+2024-06-04 13:45:26,514 - INFO - Watching for file changes with StatReloader
+2024-06-04 14:04:44,304 - INFO - Watching for file changes with StatReloader
+2024-06-04 14:14:09,162 - INFO - Watching for file changes with StatReloader
+2024-06-04 14:20:37,692 - INFO - Watching for file changes with StatReloader
+2024-06-04 14:23:48,291 - INFO - Watching for file changes with StatReloader
+2024-06-04 14:24:09,458 - WARNING - Not Found: /favicon.ico
+2024-06-04 16:14:55,088 - INFO - Watching for file changes with StatReloader
