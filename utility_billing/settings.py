@@ -3,10 +3,13 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Путь, куда будут собираться статические файлы
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+# Additional locations of static files
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),  # Папка с исходными статическими файлами в проекте
+    os.path.join(BASE_DIR, 'your_app/static'),
 ]
 
 SECRET_KEY = 'django-insecure-%z)og3_ohsi)25y)fj=m!+!=04!xfu3#uizmvut81y_o#=u131'

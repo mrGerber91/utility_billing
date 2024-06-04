@@ -1,0 +1,55 @@
+html, body {
+    margin: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+.container {
+    flex: 1;
+}
+.navbar, .footer {
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
+    height: 70px;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: background-color 0.5s, color 0.5s;
+}
+.navbar-item, .footer-content {
+    position: relative;
+    z-index: 3;
+    color: white;
+    transition: color 0.5s;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+.navbar-burger span {
+    background-color: white;
+}
+.navbar-burger {
+    display: none;
+}
+.navbar-item:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+.hero {
+    color: white;
+    z-index: 2;
+    transition: background-color 0.5s, color 0.5s;
+}
+.hero-body {
+    padding: 1.5rem 1.5rem;
+}
+@media (max-width: 768px) {
+    .navbar-burger {
+        display: block;
+    }
+    .navbar-menu {
+        display: none;
+    }
+    .navbar-menu.is-active {
+        display: block;
+    }
+}

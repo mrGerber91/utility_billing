@@ -4,171 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Utility Billing{% endblock %}</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+
     {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bulma.min.css' %}">
+    <script defer src="{% static 'js/all.js' %}"></script>
     <link rel="icon" href="https://s3.timeweb.cloud/a43db249-billing/favicon.ico">
-    <style>
-        html, body {
-            -webkit-text-size-adjust: 100%;
-            -webkit-user-select: none;
-            height: 100%;
-            margin: 0;
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            display: flex;
-            flex-direction: column;
-            overflow: auto;
-            text-size-adjust: 100%;
-            user-select: none;
-           
-        }
-        .container {
-            flex: 1;
-        }
-        .navbar, .footer {
-            position: relative;
-            z-index: 2;
-            overflow: hidden;
-            height: 70px;
-            background-color: rgba(0, 0, 0, 0.5);
-            transition: background-color 0.5s, color 0.5s;
-        }
-        .navbar-item, .footer-content {
-            position: relative;
-            z-index: 3;
-            color: white;
-            transition: color 0.5s;
-            /* Улучшение видимости текста для бургер-меню */
-            background-color: rgba(0, 0, 0, 0.7); /* Делаем фон немного темнее для читаемости */
-        }
-        .navbar-burger span {
-            background-color: white;
-        }
-        .navbar-burger {
-            display: none;
-        }
-        .navbar-item:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-        .hero {
-            color: white;
-            z-index: 2;
-            transition: background-color 0.5s, color 0.5s;
-        }
-        .hero-body {
-            padding: 1.5rem 1.5rem;
-        }
-        @media (max-width: 768px) {
-            .navbar-burger {
-                display: block;
-            }
-            .navbar-menu {
-                display: none;
-            }
-            .navbar-menu.is-active {
-                display: block;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-<nav class="navbar" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">
-        <a class="navbar-item" href="{% url 'home' %}">
-            <strong>Utility Billing</strong>
-        </a>
-        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-        </a>
-    </div>
-    <div id="navbarBasicExample" class="navbar-menu">
-        <div class="navbar-end">
-            <a class="navbar-item" href="{% url 'home' %}">Home</a>
-            {% if user.is_authenticated %}
-                <a class="navbar-item" href="{% url 'billing:logout' %}">Logout</a>
-            {% else %}
-                <a class="navbar-item" href="{% url 'billing:login' %}">Login</a>
-                <a class="navbar-item" href="{% url 'billing:register' %}">Register</a>
-            {% endif %}
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="{% url 'home' %}">
+                <strong>Utility Billing</strong>
+            </a>
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
         </div>
-    </div>
-</nav>
-<div class="container">
-    <section class="hero is-medium">
-        <div class="hero-body">
-            <div class="container">
-                <h1 class="title">Welcome to Utility Billing</h1>
-                <h2 class="subtitle">Manage your utility bills easily and efficiently.</h2>
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-end">
+                <a class="navbar-item" href="{% url 'home' %}">Home</a>
+                {% if user.is_authenticated %}
+                    <a class="navbar-item" href="{% url 'billing:logout' %}">Logout</a>
+                {% else %}
+                    <a class="navbar-item" href="{% url 'billing:login' %}">Login</a>
+                    <a class="navbar-item" href="{% url 'billing:register' %}">Register</a>
+                {% endif %}
             </div>
         </div>
-    </section>
-    <section class="section">
-        <div class="container">
-            {% block content %}
-            {% endblock %}
-        </div>
-    </section>
-</div>
-<footer class="footer">
-    <div class="content has-text-centered footer-content">
-        <p>
-            <strong>Utility Billing</strong> by <a href="https://github.com/mrGerber91">mrGerber team</a>. The source code is licensed
-            <a href="http://opensource.org/licenses/mit-license.php">MIT</a>.
-        </p>
+    </nav>
+    <div class="container">
+        <section class="hero is-medium">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">Welcome to Utility Billing</h1>
+                    <h2 class="subtitle">Manage your utility bills easily and efficiently.</h2>
+                </div>
+            </div>
+        </section>
+        <section class="section">
+            <div class="container">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </section>
     </div>
-</footer>
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
-    if ($navbarBurgers.length > 0) {
-        $navbarBurgers.forEach(el => {
-            el.addEventListener('click', () => {
-                const target = el.dataset.target;
-                const $target = document.getElementById(target);
-                console.log('Burger menu toggled'); // Добавлен для отладки
-                el.classList.toggle('is-active');
-                $target.classList.toggle('is-active');
-            });
-        });
-    }
-    // Change background image and animation based on the time of day
-    const hours = new Date().getHours();
-    const navbar = document.querySelector('.navbar');
-    const footer = document.querySelector('.footer');
-    const hero = document.querySelector('.hero');
-
-    function createAnimationElement(type) {
-        const element = document.createElement('div');
-        element.classList.add(type);
-        element.style.top = `${Math.random() * 80}vh`;
-        element.style.left = `${Math.random() * 80}vw`;
-        document.body.appendChild(element);
-    }
-
-    if (hours >= 6 && hours < 20) {
-        document.body.style.backgroundImage = "url('https://s3.timeweb.cloud/a43db249-billing/white.webp')";
-        navbar.style.backgroundColor = 'rgba(255,255,255,0.5)';
-        footer.style.backgroundColor = 'rgba(255,255,255,0.5)';
-        navbar.style.color = 'black';
-        footer.style.color = 'black';
-        hero.classList.add('hero-day');
-        hero.classList.remove('hero-night');
-        createAnimationElement('stripe');
-    } else {
-        document.body.style.backgroundImage = "url('https://s3.timeweb.cloud/a43db249-billing/black.webp')";
-        navbar.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-        footer.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-        navbar.style.color = 'white';
-        footer.style.color = 'white';
-        hero.classList.add('hero-night');
-        hero.classList.remove('hero-day');
-        createAnimationElement('star');
-    }
-});
-</script>
+    <footer class="footer">
+        <div class="content has-text-centered footer-content">
+            <p>
+                <strong>Utility Billing</strong> by <a href="https://github.com/mrGerber91">mrGerber team</a>.
+            </p>
+        </div>
+    </footer>
+    <script src="{% static 'js/scripts.js' %}" defer></script>
 </body>
 </html>

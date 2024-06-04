@@ -217,3 +217,10 @@ django.template.exceptions.TemplateDoesNotExist: billing/../templates/accounts/p
 2024-06-04 14:23:48,291 - INFO - Watching for file changes with StatReloader
 2024-06-04 14:24:09,458 - WARNING - Not Found: /favicon.ico
 2024-06-04 16:14:55,088 - INFO - Watching for file changes with StatReloader
+2024-06-04 22:44:13,789 - INFO - Watching for file changes with StatReloader
+2024-06-04 22:50:30,617 - INFO - C:\Users\Sasha_Jullia_Misha\django_v2\utility_billing\billing\middleware.py changed, reloading.
+2024-06-04 22:50:30,992 - INFO - Watching for file changes with StatReloader
+2024-06-04 23:02:46,792 - INFO - Watching for file changes with StatReloader
+2024-06-04 23:29:16,174 - INFO - Watching for file changes with StatReloader
+2024-06-04 23:54:33,926 - INFO - Watching for file changes with StatReloader
+2024-06-04 23:55:59,784 - INFO - Watching for file changes with StatReloader

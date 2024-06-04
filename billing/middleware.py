@@ -4,8 +4,15 @@ class SecurityAndCacheMiddleware:
 
     def __call__(self, request):
         response = self.get_response(request)
+        csp = (
+            "default-src 'self';"
+            "script-src 'self' https://use.fontawesome.com;"
+            "style-src 'self' https://cdnjs.cloudflare.com 'unsafe-inline';"
+            "img-src 'self' https://s3.timeweb.cloud;"
+            "frame-ancestors 'none';"
+        )
+        response['Content-Security-Policy'] = csp
         response['X-Content-Type-Options'] = 'nosniff'
-        response['Content-Security-Policy'] = "default-src 'self'; frame-ancestors 'none';"
-        response['X-Frame-Options'] = 'DENY'
         response['Cache-Control'] = 'max-age=31536000, immutable'
         return response
+
