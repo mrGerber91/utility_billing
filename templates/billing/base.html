@@ -53,40 +53,7 @@
         .hero-body {
             padding: 1.5rem 1.5rem;
         }
-        @keyframes starAnimation {
-            0% { transform: translate(0, 0); }
-            25% { transform: translate(50vw, -50vh); }
-            50% { transform: translate(-50vw, 50vh); }
-            75% { transform: translate(50vw, 50vh); }
-            100% { transform: translate(-50vw, -50vh); }
-        }
-        @keyframes stripeAnimation {
-            0% { transform: translate(0, 0); }
-            25% { transform: translate(50vw, 0); }
-            50% { transform: translate(-50vw, 0); }
-            75% { transform: translate(50vw, 0); }
-            100% { transform: translate(-50vw, 0); }
-        }
-        .star, .stripe {
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            background-size: contain;
-            z-index: 1;
-            top: 0;  // Добавить эту строку
-            right: 0; // Добавить эту строку
-            bottom: 0; // Добавить эту строку
-            left: 0; // Добавить эту строку
-        }
-
-        .star {
-            background: url('https://s3.timeweb.cloud/a43db249-billing/star.png') no-repeat center center / contain;
-            animation: starAnimation 30s linear infinite;
-        }
-        .stripe {
-            background: url('https://s3.timeweb.cloud/a43db249-billing/stripe.png') no-repeat center center / contain;
-            animation: stripeAnimation 30s linear infinite;
-        }
+       
         @media (max-width: 768px) {
             .navbar-burger {
                 display: block;
@@ -168,14 +135,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const footer = document.querySelector('.footer');
     const hero = document.querySelector('.hero');
 
-    function createAnimationElement(type) {
-        const element = document.createElement('div');
-        element.classList.add(type);
-        element.style.top = `${Math.random() * 80}vh`;
-        element.style.left = `${Math.random() * 80}vw`;
-        document.body.appendChild(element);
-    }
-
     if (hours >= 6 && hours < 20) {
         document.body.style.backgroundImage = "url('https://s3.timeweb.cloud/a43db249-billing/white.webp')";
         navbar.style.backgroundColor = 'rgba(255,255,255,0.5)';
@@ -184,7 +143,6 @@ document.addEventListener('DOMContentLoaded', () => {
         footer.style.color = 'black';
         hero.classList.add('hero-day');
         hero.classList.remove('hero-night');
-        createAnimationElement('stripe');
     } else {
         document.body.style.backgroundImage = "url('https://s3.timeweb.cloud/a43db249-billing/black.webp')";
         navbar.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
@@ -193,7 +151,6 @@ document.addEventListener('DOMContentLoaded', () => {
         footer.style.color = 'white';
         hero.classList.add('hero-night');
         hero.classList.remove('hero-day');
-        createAnimationElement('star');
     }
 });
 </script>
