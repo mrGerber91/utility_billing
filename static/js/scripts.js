@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
     // Change background image and animation based on the time of day
     const hours = new Date().getHours();
     const navbar = document.querySelector('.navbar');
@@ -18,16 +19,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (hours >= 6 && hours < 20) {
         document.body.style.backgroundImage = "url('https://s3.timeweb.cloud/a43db249-billing/white.webp')";
-        navbar.style.backgroundColor = 'rgba(255,255,255,0.5)';
-        footer.style.backgroundColor = 'rgba(255,255,255,0.5)';
+        navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
+        footer.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
         navbar.style.color = 'black';
         footer.style.color = 'black';
         hero.classList.add('hero-day');
         hero.classList.remove('hero-night');
     } else {
         document.body.style.backgroundImage = "url('https://s3.timeweb.cloud/a43db249-billing/black.webp')";
-        navbar.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-        footer.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+        navbar.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+        footer.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
         navbar.style.color = 'white';
         footer.style.color = 'white';
         hero.classList.add('hero-night');
