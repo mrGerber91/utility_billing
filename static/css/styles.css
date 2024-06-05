@@ -1,47 +1,51 @@
 html, body {
     margin: 0;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #f0f0f0, #ffffff);
     display: flex;
     flex-direction: column;
-    overflow: auto;
 }
+
 .container {
     flex: 1;
 }
+
 .navbar, .footer {
-    position: relative;
-    z-index: 2;
-    overflow: hidden;
-    height: 70px;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
     transition: background-color 0.5s, color 0.5s;
 }
+
 .navbar-item, .footer-content {
-    position: relative;
-    z-index: 3;
     color: white;
     transition: color 0.5s;
-    background-color: rgba(0, 0, 0, 0.7);
 }
+
 .navbar-burger span {
     background-color: white;
 }
+
 .navbar-burger {
     display: none;
+    cursor: pointer;
 }
+
 .navbar-item:hover {
     background-color: rgba(255, 255, 255, 0.2);
 }
+
 .hero {
-    color: white;
-    z-index: 2;
+    color: black;
+    background: rgba(255, 255, 255, 0.8);
     transition: background-color 0.5s, color 0.5s;
 }
+
 .hero-body {
-    padding: 1.5rem 1.5rem;
+    padding: 2rem;
 }
+
 @media (max-width: 768px) {
     .navbar-burger {
         display: block;
