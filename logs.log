@@ -21593,3 +21593,6 @@ b''
 2024-06-05 02:38:39,248 - INFO - Watching for file changes with StatReloader
 2024-06-05 02:40:39,845 - INFO - C:\Users\Sasha_Jullia_Misha\django_v2\utility_billing\utility_billing\settings.py changed, reloading.
 2024-06-05 02:40:40,255 - INFO - Watching for file changes with StatReloader
+2024-06-05 03:07:27,110 - INFO - Watching for file changes with StatReloader
+2024-06-05 03:14:11,387 - INFO - C:\Users\Sasha_Jullia_Misha\django_v2\utility_billing\utility_billing\settings.py changed, reloading.
+2024-06-05 03:14:11,792 - INFO - Watching for file changes with StatReloader
