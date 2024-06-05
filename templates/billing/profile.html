@@ -3,12 +3,12 @@
 {% block title %}User Profile - Utility Billing{% endblock %}
 
 {% block content %}
-    <h1>User Profile</h1>
+    <h2 class="title">User Profile</h2>
     <form method="post">
         {% csrf_token %}
         {{ user_form.as_p }}
         <button type="submit" class="button is-primary">Update Profile</button>
     </form>
     <p>Для начала расчетов платы, перейдите по ссылке:</p>
-    <a href="{% url 'billing:setup_rates' %}">Начать расчеты</a>
+    <a href="{% url 'billing:setup_rates' %}" class="button is-link">Начать расчеты</a>
 {% endblock %}
