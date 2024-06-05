@@ -3,68 +3,67 @@
 {% block title %}Input Previous Usage{% endblock %}
 
 {% block content %}
-<h2 class="title">Input Previous Usage</h2>
-<form method="post">
-    {% csrf_token %}
-    <div class="field">
-        <label class="label">Month</label>
-        <div class="control">
-            {{ form.month }}
+    <h2 class="title">Input Previous Usage</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="field">
+            <label class="label">Month</label>
+            <div class="control">
+                {{ form.month }}
+            </div>
         </div>
-    </div>
-    <div class="field">
-        <label class="label">Hot Water Usage</label>
-        <div class="control">
-            <input class="input" type="number" name="hot_water" value="{{ form.hot_water.value|default_if_none:0 }}" min="0" required>
+        <div class="field">
+            <label class="label">Hot Water Usage</label>
+            <div class="control">
+                <input class="input" type="number" name="hot_water" value="{{ form.hot_water.value|default_if_none:0 }}" min="0" required>
+            </div>
         </div>
-    </div>
-    <div class="field">
-        <label class="label">Cold Water Usage</label>
-        <div class="control">
-            <input class="input" type="number" name="cold_water" value="{{ form.cold_water.value|default_if_none:0 }}" min="0" required>
+        <div class="field">
+            <label class="label">Cold Water Usage</label>
+            <div class="control">
+                <input class="input" type="number" name="cold_water" value="{{ form.cold_water.value|default_if_none:0 }}" min="0" required>
+            </div>
         </div>
-    </div>
-    <div class="field">
-        <label class="label">Electricity Usage</label>
-        <div class="control">
-            <input class="input" type="number" name="electricity" value="{{ form.electricity.value|default_if_none:0 }}" min="0" required>
+        <div class="field">
+            <label class="label">Electricity Usage</label>
+            <div class="control">
+                <input class="input" type="number" name="electricity" value="{{ form.electricity.value|default_if_none:0 }}" min="0" required>
+            </div>
         </div>
-    </div>
-    <div class="field">
-        <label class="label">Sewage Usage</label>
-        <div class="control">
-            <input class="input" type="number" name="sewage" value="{{ form.sewage.value|default_if_none:0 }}" min="0" required>
+        <div class="field">
+            <label class="label">Sewage Usage</label>
+            <div class="control">
+                <input class="input" type="number" name="sewage" value="{{ form.sewage.value|default_if_none:0 }}" min="0" required>
+            </div>
         </div>
-    </div>
-    <div class="field">
-        <label class="checkbox">
-            <input type="checkbox" name="auto_calculate_sewage" {{ form.auto_calculate_sewage.value|yesno:"checked," }}>
-            Auto calculate sewage
-        </label>
-    </div>
-    <div class="control">
-        <button type="submit" class="button is-primary">Save Usage</button>
-    </div>
-</form>
+        <div class="field">
+            <label class="checkbox">
+                <input type="checkbox" name="auto_calculate_sewage" {{ form.auto_calculate_sewage.value|yesno:"checked," }}>
+                Auto calculate sewage
+            </label>
+        </div>
+        <div class="control">
+            <button type="submit" class="button is-primary">Save Usage</button>
+        </div>
+    </form>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hotWaterInput = document.querySelector('input[name="hot_water"]');
+            const coldWaterInput = document.querySelector('input[name="cold_water"]');
+            const sewageInput = document.querySelector('input[name="sewage"]');
+            const autoCalcCheckbox = document.querySelector('input[name="auto_calculate_sewage"]');
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const hotWaterInput = document.querySelector('input[name="hot_water"]');
-        const coldWaterInput = document.querySelector('input[name="cold_water"]');
-        const sewageInput = document.querySelector('input[name="sewage"]');
-        const autoCalcCheckbox = document.querySelector('input[name="auto_calculate_sewage"]');
-
-        function autoCalculateSewage() {
-            if (autoCalcCheckbox.checked) {
-                const hotWaterUsage = parseFloat(hotWaterInput.value) || 0;
-                const coldWaterUsage = parseFloat(coldWaterInput.value) || 0;
-                sewageInput.value = hotWaterUsage + coldWaterUsage;
+            function autoCalculateSewage() {
+                if (autoCalcCheckbox.checked) {
+                    const hotWaterUsage = parseFloat(hotWaterInput.value) || 0;
+                    const coldWaterUsage = parseFloat(coldWaterInput.value) || 0;
+                    sewageInput.value = hotWaterUsage + coldWaterUsage;
+                }
             }
-        }
 
-        hotWaterInput.addEventListener('input', autoCalculateSewage);
-        coldWaterInput.addEventListener('input', autoCalculateSewage);
-        autoCalcCheckbox.addEventListener('change', autoCalculateSewage);
-    });
-</script>
+            hotWaterInput.addEventListener('input', autoCalculateSewage);
+            coldWaterInput.addEventListener('input', autoCalculateSewage);
+            autoCalcCheckbox.addEventListener('change', autoCalculateSewage);
+        });
+    </script>
 {% endblock %}
