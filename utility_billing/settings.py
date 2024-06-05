@@ -4,16 +4,12 @@ from dotenv import load_dotenv
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# Static files (CSS, JavaScript, Images)
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-# Additional locations of static files
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'your_app/static'),
+    os.path.join(BASE_DIR, 'static'),
 ]
 
 SECURE_CONTENT_TYPE_NOSNIFF = True
-
 
 SECRET_KEY = 'django-insecure-%z)og3_ohsi)25y)fj=m!+!=04!xfu3#uizmvut81y_o#=u131'
 
@@ -34,7 +30,6 @@ INSTALLED_APPS = [
     'billing.apps.BillingConfig',
     'rest_framework',
     'captcha',
-
     'compressor',
     'sslserver',
     'corsheaders',
@@ -58,33 +53,38 @@ MIDDLEWARE = [
 CSP_DEFAULT_SRC = (
     "'self'",
     'https://mrgerber91-utility-billing-690d.twc1.net',
-    'https://s3.timeweb.cloud'
+    'https://s3.timeweb.cloud',
+    'https://a43db249-billing.s3.timeweb.cloud',  # Добавлен новый источник
 )
 
 CSP_STYLE_SRC = (
     "'self'",
-    "'unsafe-inline'",  # Разрешает все встроенные стили
+    "'unsafe-inline'",
     'https://fonts.googleapis.com',
     'https://cdnjs.cloudflare.com',
-    'https://s3.timeweb.cloud'
+    'https://s3.timeweb.cloud',
+    'https://a43db249-billing.s3.timeweb.cloud',
 )
+
 
 CSP_FONT_SRC = (
     "'self'",
     'https://fonts.gstatic.com',
-    'https://s3.timeweb.cloud'
+    'https://s3.timeweb.cloud',
+    'https://a43db249-billing.s3.timeweb.cloud',  # Добавлен новый источник
 )
 
 CSP_SCRIPT_SRC = (
     "'self'",
-    "'unsafe-inline'",
     'https://use.fontawesome.com',
-    'https://cdnjs.cloudflare.com'
+    'https://cdnjs.cloudflare.com',
+    'https://a43db249-billing.s3.timeweb.cloud',  # Добавлен новый источник
 )
 
 CSP_IMG_SRC = (
     "'self'",
-    'https://s3.timeweb.cloud'
+    'https://s3.timeweb.cloud',
+    'https://a43db249-billing.s3.timeweb.cloud',  # Добавлен новый источник
 )
 
 ROOT_URLCONF = 'utility_billing.urls'
@@ -176,9 +176,11 @@ AXES_FAILURE_LIMIT = 50000
 AXES_COOLOFF_TIME = 0.001
 AXES_LOCKOUT_TEMPLATE = 'lockout.html'
 
-SECURE_SSL_REDIRECT = False
-SESSION_COOKIE_SECURE = False
-CSRF_COOKIE_SECURE = False
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_SAMESITE = 'None'
+SESSION_COOKIE_SAMESITE = 'None'
 
 CACHES = {
     'default': {
@@ -187,17 +189,13 @@ CACHES = {
     }
 }
 
-STATICFILES_FINDERS = [
-    'compressor.finders.CompressorFinder',
-]
-
 COMPRESS_ENABLED = True
 COMPRESS_CSS_FILTERS = ['compressor.filters.css_default.CssAbsoluteFilter', 'compressor.filters.cssmin.CSSMinFilter']
 COMPRESS_JS_FILTERS = ['compressor.filters.jsmin.JSMinFilter']
 
 AUTHENTICATION_BACKENDS = [
 
-'django.contrib.auth.backends.ModelBackend'
+    'django.contrib.auth.backends.ModelBackend'
 ]
 
 load_dotenv()
@@ -206,14 +204,7 @@ AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
 AWS_S3_REGION_NAME = os.getenv('AWS_S3_REGION_NAME')
-AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.timeweb.cloud'
-
-# Настройки статических файлов
-STATIC_LOCATION = 'static'
-STATIC_URL = f'https://a43db249-billing.s3.timeweb.cloud/static/'
-STATICFILES_STORAGE = 'utility_billing.storage_backends.StaticStorage'
-
-# Настройки медиа файлов
-MEDIA_LOCATION = 'media'
-DEFAULT_FILE_STORAGE = 'utility_billing.storage_backends.MediaStorage'
-MEDIA_URL = f'https://a43db249-billing.s3.timeweb.cloud/media/'
+AWS_S3_ENDPOINT_URL = 'https://s3.timeweb.cloud'
+AWS_S3_CUSTOM_DOMAIN = 'a43db249-billing.s3.timeweb.cloud'
+STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/static/'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
